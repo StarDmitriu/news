@@ -1,0 +1,68 @@
+.card{
+  padding: 20px;
+  width: 300px;
+}
+
+a, p, h1, h2, h3, h4{
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  color: #141414;
+}
+
+body{
+  font-family: sans-serif;
+}
+
+.card__img{
+  width: 300px;
+  height: 200px;
+  border-radius: 10px;
+}
+
+.MainCard{
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-top: 50px;
+  display: flex;
+  gap: 30px;
+}
+
+.card__header{
+  display: flex;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.card__author-main{
+  color: #6a6a6a;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.card__publishedAt-main{
+  color: #6a6a6a;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.card__title-main{
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 50px;
+  margin-bottom: 20px;
+}
+
+.card__description-main{
+  font-size: 22px;
+  color: #6a6a6a;
+}
+
+.card__link-main{
+  position: absolute;
+  bottom: 20px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #224085;
+}
