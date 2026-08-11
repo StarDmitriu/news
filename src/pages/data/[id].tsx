@@ -43,8 +43,13 @@ const NewMainArticle = () => {
 
 	async function setQuery(query: string) {
 		console.log(query)
+		const apiKey = process.env.NEXT_PUBLIC_NEWS_API_KEY
+		if (!apiKey) {
+			console.error('Missing NEXT_PUBLIC_NEWS_API_KEY')
+			return
+		}
 		const res = await fetch(
-			`https://newsapi.org/v2/everything?q=${query}&apiKey=5a767398c779420e9bd15b92c3d0118d`
+			`https://newsapi.org/v2/everything?q=${encodeURIComponent(query)}&apiKey=${apiKey}`
 		)
 		const json = await res.json()
 		const main: Article[] = json.articles
@@ -86,51 +91,8 @@ const NewMainArticle = () => {
 	)
 }
 /*
-export const getServerSideProps: GetServerSideProps = async context => {
-	const query = useStoreE(state => state.query)
-	const res = await fetch(
-		`https://newsapi.org/v2/everything?q=${query}&apiKey=5a767398c779420e9bd15b92c3d0118d`
-	)
-	const json = await res.json()
-	const data: Article[] = json.articles
-
-	return {
-		props: {
-			data,
-		},
-	}
-}
-
-
-export const getStaticPaths: GetStaticPaths = async () => {
-	const query = process.env.QUERY || 'sport'
-	const res = await fetch(
-		`https://newsapi.org/v2/everything?q=${query}&apiKey=5a767398c779420e9bd15b92c3d0118d`
-	)
-	const json = await res.json()
-	const data: Article[] = json.articles
-
-	const paths = data.map((_, index) => ({
-		params: { id: index.toString() },
-	}))
-
-	return { paths, fallback: false }
-}
-
-export const getStaticProps: GetStaticProps = async () => {
-	const query = process.env.QUERY || 'sport'
-	const res = await fetch(
-		`https://newsapi.org/v2/everything?q=${query}&apiKey=5a767398c779420e9bd15b92c3d0118d`
-	)
-	const json = await res.json()
-	const data: Article[] = json.articles
-
-	return {
-		props: {
-			data,
-		},
-	}
-}
+Commented-out server helpers previously contained a hardcoded NewsAPI key.
+Use NEXT_PUBLIC_NEWS_API_KEY from .env.local instead — never commit secrets.
 */
 export default NewMainArticle
 

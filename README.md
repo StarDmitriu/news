@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# News Feed (Next.js)
 
-## Getting Started
+News search UI built with Next.js. Users enter a query; articles are loaded from [NewsAPI](https://newsapi.org/). Client state uses Zustand.
 
-First, run the development server:
+> Status: **Learning / personal project**.  
+> **Security:** never commit API keys. Use environment variables only.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Features
+
+- Search news by keyword
+- Featured / main article view
+- Article cards list
+- Query state via Zustand (with localStorage for last query)
+
+## Stack
+
+- Next.js 14
+- React 18
+- TypeScript
+- Zustand
+- NewsAPI (`/v2/everything`)
+
+## Setup
+
+1. Get an API key from [newsapi.org](https://newsapi.org/).
+
+2. Create `.env.local` (do not commit this file):
+
+```env
+NEXT_PUBLIC_NEWS_API_KEY=your_key_here
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. In the fetch URL, read the key from `process.env.NEXT_PUBLIC_NEWS_API_KEY` (remove any hardcoded key from source).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+4. Run:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm install
+npm run dev
+```
 
-## Learn More
+Open [http://localhost:3000](http://localhost:3000).
 
-To learn more about Next.js, take a look at the following resources:
+## Important
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+If a key was ever committed publicly, **revoke it** in the NewsAPI dashboard and generate a new one. Prefer making the repo private until the leak is cleaned up.

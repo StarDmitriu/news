@@ -16,8 +16,13 @@ export default function Home() {
 	const setQuery = useStoreE(state => state.setQuery)
 
 	const fetchData = async (query: string) => {
+		const apiKey = process.env.NEXT_PUBLIC_NEWS_API_KEY
+		if (!apiKey) {
+			console.error('Missing NEXT_PUBLIC_NEWS_API_KEY')
+			return
+		}
 		const res = await fetch(
-			`https://newsapi.org/v2/everything?q=${query}&apiKey=5a767398c779420e9bd15b92c3d0118d`
+			`https://newsapi.org/v2/everything?q=${encodeURIComponent(query)}&apiKey=${apiKey}`
 		)
 		const json = await res.json()
 		setData(json.articles)
